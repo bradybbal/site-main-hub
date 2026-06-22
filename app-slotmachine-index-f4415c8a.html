@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老虎机模拟器｜轻松体验经典转盘乐趣</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #faf9f8;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #1e1e1e;
+            line-height: 1.7;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .page {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* hero */
+        .hero {
+            margin-bottom: 3.5rem;
+            padding-top: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #1a1a1a;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 580px;
+        }
+
+        /* 主视觉卡片 */
+        .visual-card {
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04), 0 4px 10px rgba(0, 0, 0, 0.02);
+            padding: 2.2rem 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid #f0edea;
+        }
+
+        .visual-card .label {
+            display: inline-block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #a09890;
+            margin-bottom: 1rem;
+            border-left: 3px solid #c9b99e;
+            padding-left: 0.75rem;
+        }
+
+        .visual-card .main-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .visual-card h2 {
+            font-size: 1.7rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            color: #222;
+        }
+
+        .visual-card p {
+            color: #3f3f3f;
+            margin-bottom: 1rem;
+        }
+
+        /* 用途卡片组 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 540px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+        }
+
+        .usage-card {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 1.8rem 1.5rem;
+            border: 1px solid #efece8;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .usage-card:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .usage-card .emoji-badge {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .usage-card h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            color: #1d1d1d;
+        }
+
+        .usage-card p {
+            font-size: 0.95rem;
+            color: #5c5c5c;
+        }
+
+        /* 适合人群板块 */
+        .audience {
+            margin-bottom: 3rem;
+        }
+
+        .audience h3 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #1e1e1e;
+            border-bottom: 1px solid #e6e1db;
+            padding-bottom: 0.4rem;
+        }
+
+        .audience-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            list-style: none;
+            padding: 0;
+        }
+
+        .audience-list li {
+            background: #ffffff;
+            border: 1px solid #e8e3dd;
+            border-radius: 50px;
+            padding: 0.3rem 1.2rem;
+            font-size: 0.95rem;
+            color: #3a3a3a;
+            line-height: 1.8;
+        }
+
+        /* 自然链接段落 */
+        .link-paragraph {
+            background: #f6f4f1;
+            border-radius: 22px;
+            padding: 2rem 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #c9b99e;
+        }
+
+        .link-paragraph p {
+            font-size: 1.05rem;
+            color: #2c2c2c;
+        }
+
+        .link-paragraph a {
+            color: #1e1e1e;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #c9b99e;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .link-paragraph a:hover {
+            color: #7f6e5a;
+        }
+
+        /* FAQ 摘要（极简） */
+        .faq-mini {
+            margin-top: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .faq-mini details {
+            border-bottom: 1px solid #e6e1db;
+            padding: 0.9rem 0;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #1e1e1e;
+            font-size: 1rem;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-mini summary::before {
+            content: "↴";
+            font-size: 1.2rem;
+            color: #b0a494;
+        }
+
+        .faq-mini details[open] summary::before {
+            content: "↲";
+        }
+
+        .faq-mini details p {
+            margin: 0.6rem 0 0.2rem 1.6rem;
+            color: #4e4e4e;
+            font-size: 0.95rem;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            font-size: 0.85rem;
+            color: #888;
+            text-align: center;
+            border-top: 1px solid #e8e3dd;
+            padding-top: 1.8rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #eae5df;
+            margin: 2rem 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 480px) {
+            body {
+                padding: 1.5rem 1rem 3rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .visual-card {
+                padding: 1.6rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- hero -->
+    <div class="hero">
+        <h1>转盘亮起，节奏恰好</h1>
+        <p>没有花哨的灯光，也不谈输赢。这里只有一台纯粹的老虎机模拟器——帮你找回那种轻轻拉下摇杆的放松感。</p>
+    </div>
+
+    <!-- 主视觉卡片 -->
+    <div class="visual-card">
+        <div class="label">主视觉 · 模拟</div>
+        <div class="main-icon">🎰</div>
+        <h2>一台放在浏览器里的复古机台</h2>
+        <p>你不需要投币，也没有时间压力。每个回合都是独立的节奏：设定图案组合，观察滚筒转动，然后得到一次随机的反馈。这就是 <strong>老虎机模拟器</strong> 最本质的样子——数字时代的安静玩具。</p>
+        <p>画面干净，点击流畅。它不会催你继续，也不会许诺什么。你随时可以停下，也随时可以再玩一轮。</p>
+    </div>
+
+    <!-- 用途卡片 2x2 -->
+    <div class="card-grid">
+        <div class="usage-card">
+            <span class="emoji-badge">☕</span>
+            <h3>随手解压</h3>
+            <p>午休或放空时，点开转几圈。没有复杂的规则，手指一动就是一局。</p>
+        </div>
+        <div class="usage-card">
+            <span class="emoji-badge">🧪</span>
+            <h3>随机体验</h3>
+            <p>理解概率与频次的关系，或者纯粹观察图案的出现方式，都很有趣。</p>
+        </div>
+        <div class="usage-card">
+            <span class="emoji-badge">🕹️</span>
+            <h3>机械感重温</h3>
+            <p>那些老式拉杆机的视觉符号，被简化成轻量的网页交互，保留了核心趣味。</p>
+        </div>
+        <div class="usage-card">
+            <span class="emoji-badge">📱</span>
+            <h3>移动友好</h3>
+            <p>无论是手机还是平板，布局自动适应。等车、排队时随时可以来两圈。</p>
+        </div>
+    </div>
+
+    <!-- 适合人群 -->
+    <div class="audience">
+        <h3>适合谁用</h3>
+        <ul class="audience-list">
+            <li>对老虎机运作好奇的人</li>
+            <li>想找一种低门槛的线上放松方式</li>
+            <li>喜欢复古街机风格的设计爱好者</li>
+            <li>单纯想试试手气、不涉及任何金钱</li>
+            <li>需要短暂抽离工作思绪的上班族</li>
+        </ul>
+    </div>
+
+    <!-- 自然链接段落 -->
+    <div class="link-paragraph">
+        <p>如果你只是想找个安静的地方，随意拉几下摇杆，看看水果、铃铛和 7 的图案如何排列——那么直接打开 <a href="https://app-slotmachine.com">老虎机模拟器</a> 就好。页面加载完就能开始，没有注册，也没有等待。它就是一台纯粹为手感与随机性准备的网页玩具。</p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+        <details>
+            <summary>需要付费或注册吗？</summary>
+            <p>完全免费，也不需要创建任何账户。打开页面即可使用。</p>
+        </details>
+        <details>
+            <summary>模拟器会记录我的数据吗？</summary>
+            <p>不会。所有转动逻辑都在本地运行，没有后台统计或追踪。</p>
+        </details>
+        <details>
+            <summary>移动设备上操作方便吗？</summary>
+            <p>适配触摸操作，点击按钮或直接点击滚筒区域都能触发转动。</p>
+        </details>
+    </div>
+
+    <hr>
+
+    <div class="footer-note">
+        一个安静的网页玩具 · 仅用作模拟与体验
+    </div>
+</div>
+</body>
+</html>
