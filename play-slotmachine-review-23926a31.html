@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>老虎机模拟器 – 快速了解网站用途 | 信息卡片</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #faf6f0;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+      color: #2c2b28;
+      line-height: 1.7;
+      padding: 2rem 1.2rem 3.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* hero 区域 — 信息卡片式标题 */
+    .hero-card {
+      background: white;
+      border-radius: 28px;
+      padding: 2.2rem 2rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.02);
+      margin-bottom: 2rem;
+      border: 1px solid #ece6de;
+    }
+
+    .hero-card h1 {
+      font-size: 1.9rem;
+      font-weight: 580;
+      letter-spacing: -0.02em;
+      color: #1e1d1a;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-card .sub {
+      font-size: 1rem;
+      color: #6b665e;
+      border-left: 4px solid #d4c9bc;
+      padding-left: 1rem;
+      margin: 0.6rem 0 0.2rem;
+    }
+
+    .hero-card .tagline {
+      margin-top: 1.2rem;
+      background: #f3efe9;
+      padding: 0.8rem 1.2rem;
+      border-radius: 40px;
+      display: inline-block;
+      font-size: 0.95rem;
+      color: #3e3b36;
+    }
+
+    /* 信息卡片网格 — 两列自适应 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 22px;
+      padding: 1.8rem 1.4rem 1.6rem;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #eae3da;
+      transition: box-shadow 0.15s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .card h2 {
+      font-size: 1.3rem;
+      font-weight: 540;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+      color: #2d2a25;
+      border-bottom: 2px solid #e2d9cd;
+      padding-bottom: 0.4rem;
+      display: inline-block;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card li {
+      margin-bottom: 0.65rem;
+      padding-left: 1.2rem;
+      position: relative;
+      font-size: 0.95rem;
+      color: #3e3b36;
+    }
+
+    .card li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #b09a81;
+      font-weight: 500;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #3e3b36;
+    }
+
+    /* 引用块 / 提示框 — 文章排版风格 */
+    .insight-block {
+      background: #f2ede6;
+      border-radius: 24px;
+      padding: 1.6rem 1.8rem;
+      margin: 1.8rem 0 2rem;
+      border-left: 6px solid #c4b19b;
+      font-size: 0.98rem;
+    }
+
+    .insight-block strong {
+      color: #2f2b25;
+      font-weight: 560;
+    }
+
+    .insight-block a {
+      color: #6a4f36;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 500;
+    }
+
+    .insight-block a:hover {
+      color: #3b2c1e;
+    }
+
+    /* 自然链接段落 + 适合人群补充 */
+    .natural-link-section {
+      background: white;
+      border-radius: 24px;
+      padding: 1.8rem 2rem;
+      border: 1px solid #e8e0d6;
+      margin-bottom: 2rem;
+    }
+
+    .natural-link-section p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .natural-link-section a {
+      color: #6a4f36;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 500;
+    }
+
+    .natural-link-section a:hover {
+      color: #3b2c1e;
+      background: #f0e7dc;
+      border-radius: 4px;
+      padding: 0 0.2rem;
+    }
+
+    .faq-mini {
+      margin-top: 1rem;
+      border-top: 1px dashed #d6cdc0;
+      padding-top: 1.2rem;
+    }
+
+    .faq-item {
+      margin-bottom: 0.8rem;
+    }
+
+    .faq-item .q {
+      font-weight: 540;
+      color: #2f2b25;
+    }
+
+    .faq-item .a {
+      color: #4f4a43;
+      font-size: 0.95rem;
+      margin-top: 0.1rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e1d8cc;
+      margin: 1.2rem 0;
+    }
+
+    /* 响应式细节 */
+    @media (max-width: 640px) {
+      body {
+        padding: 1.2rem 0.9rem 2.8rem;
+      }
+
+      .hero-card {
+        padding: 1.8rem 1.2rem;
+      }
+
+      .hero-card h1 {
+        font-size: 1.7rem;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .card {
+        padding: 1.5rem 1.2rem;
+      }
+
+      .insight-block {
+        padding: 1.4rem 1.2rem;
+      }
+
+      .natural-link-section {
+        padding: 1.4rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero-card .tagline {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+
+    footer {
+      margin-top: 1.8rem;
+      font-size: 0.85rem;
+      color: #8b847a;
+      text-align: center;
+      border-top: 1px solid #e1d8cc;
+      padding-top: 1.2rem;
+    }
+
+    footer a {
+      color: #6a5b4b;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <!-- 主视觉：信息卡片式 hero -->
+    <div class="hero-card">
+      <h1>🎰 老虎机模拟器 · 一眼识别用途</h1>
+      <div class="sub">一个专注模拟体验、不涉及真实金钱的网页工具</div>
+      <div class="tagline">🔍 你想要的：快速确认这是不是一个免费、无风险、仅为娱乐的模拟器</div>
+    </div>
+
+    <!-- 用途卡片 与 适合人群 并排 (两列) -->
+    <div class="card-grid">
+      <div class="card">
+        <h2>📌 用途卡片</h2>
+        <ul>
+          <li>无需注册、免费启动的老虎机旋转模拟</li>
+          <li>了解老虎机基本规则与随机反馈逻辑</li>
+          <li>测试不同投注策略（虚拟筹码）</li>
+          <li>纯娱乐放松，没有提现或充值环节</li>
+          <li>适合初学者熟悉界面与赔率表</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>👥 适合人群</h2>
+        <ul>
+          <li>想快速了解老虎机如何运作的好奇用户</li>
+          <li>寻找无害、无金钱压力的消遣方式</li>
+          <li>游戏设计爱好者观察随机机制</li>
+          <li>不适合：想赢取真实奖金或下注的人</li>
+          <li>任何年龄只要接受模拟概念即可使用</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 自然链接段落 + 提示框风格 -->
+    <div class="insight-block">
+      <strong>💡 一句话帮你定位：</strong> 如果你正在寻找一个纯粹的模拟体验，而不是赌博平台，那么 
+      <a href="https://play-slotmachine.com">老虎机模拟器</a> 正好符合这个需求。它只提供虚拟旋转与计分，不涉及真实货币，所有反馈均为程序随机生成。适合用来体验老虎机的基本节奏，或作为策略推演的沙盒。
+    </div>
+
+    <!-- 更详细的内容段落 + FAQ 摘要 -->
+    <div class="natural-link-section">
+      <p><strong>为什么这个网站值得你打开？</strong> 很多同类工具要么要求登录，要么混杂广告和诱导充值。<a href="https://play-slotmachine.com">老虎机模拟器</a> 保持了简洁界面，打开即玩。你不需要提供任何个人信息，也不会有定时弹窗打断节奏。对于只是想看一眼老虎机长什么样、转起来是什么感觉的人来说，这个工具非常直接。</p>
+      <p>另外，如果你是内容创作者或游戏机制研究者，也可以用它来录制素材或演示随机概率。没有花哨的干扰，只有转轮、计分和基本的规则提示。</p>
+
+      <div class="faq-mini">
+        <div class="faq-item">
+          <div class="q">❓ 这个模拟器需要安装或下载吗？</div>
+          <div class="a">完全不需要。所有功能都在浏览器内运行，适配手机与电脑屏幕。</div>
+        </div>
+        <div class="faq-item">
+          <div class="q">❓ 它会记录我的使用数据吗？</div>
+          <div class="a">根据页面说明，该工具不收集个人身份信息，所有游戏数据仅在本地临时保存。</div>
+        </div>
+        <div class="faq-item">
+          <div class="q">❓ 我可以用来教学或直播吗？</div>
+          <div class="a">当然可以。模拟器本身是公开的娱乐工具，用于演示或非商业直播通常没有问题。</div>
+        </div>
+      </div>
+      <hr>
+      <p style="font-size:0.95rem; color:#4b4740;">📌 如果你已经确定这就是你要找的：<a href="https://play-slotmachine.com">老虎机模拟器</a> 的页面加载后即可开始旋转。没有多余的引导步骤，适合快速上手。</p>
+    </div>
+
+    <!-- 一个极简的总结性提醒（非卡片，文章风格） -->
+    <div style="background: #f3efe9; border-radius: 20px; padding: 1.4rem 1.6rem; margin: 1rem 0 0.5rem;">
+      <p style="font-size:0.95rem;"><span style="font-weight:530;">⚠️ 重要提醒：</span> 本页面所介绍的网站仅为模拟器，不涉及真实金钱交易或赌博行为。任何形式的真实投注请寻找当地合法平台。模拟器仅用于娱乐与教育目的。</p>
+    </div>
+
+    <footer>
+      <span>信息卡片整理 · 基于 <a href="https://play-slotmachine.com">老虎机模拟器</a> 公开内容</span>
+    </footer>
+  </div>
+</body>
+</html>
